@@ -30,26 +30,28 @@ export class CoffeesController {
   // }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
+    console.log(typeof id);
     // return `This action returns #${id} coffee`;
     return this.coffeeService.findOne(id);
   }
 
   @Post()
-  @HttpCode(HttpStatus.GONE)
+  @HttpCode(HttpStatus.CREATED)
   create(@Body() createCoffeeDto: CreateCoffeeDto) {
+    console.log(createCoffeeDto instanceof CreateCoffeeDto)
     // return body;
     return this.coffeeService.create(createCoffeeDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
+  update(@Param('id') id: number, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     // return `This action updates #${id} cofee`;
     return this.coffeeService.update(id, updateCoffeeDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     // return `This action removes #${id} cofee`;
     return this.coffeeService.remove(id);
   }

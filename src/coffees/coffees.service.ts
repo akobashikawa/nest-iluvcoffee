@@ -16,7 +16,7 @@ export class CoffeesService {
     return this.coffees;
   }
 
-  findOne(id) {
+  findOne(id: number) {
     // throw 'A random error';
     const found = this.coffees.find(item => +id === item.id);
     if (!found) {
@@ -30,16 +30,17 @@ export class CoffeesService {
     const id = 1 + this.coffees.length;
     Object.assign(creteCoffeeDto, { id });
     this.coffees.push(creteCoffeeDto);
+    return creteCoffeeDto;// id is included
   }
 
-  update(id: string, updateCoffeeDto: any) {
+  update(id: number, updateCoffeeDto: any) {
     const found = this.findOne(id);
     if (found) {
       Object.assign(found, updateCoffeeDto);
     }
   }
 
-  remove(id: string) {
+  remove(id: number) {
     const foundIndex = this.coffees.findIndex(item => +id === item.id);
     if (foundIndex >= 0) {
       this.coffees.splice(foundIndex, 1)
